@@ -29,6 +29,7 @@ $for(classoption)$
 $endfor$
 ]{$documentclass$}
 \usepackage{indentfirst}
+\renewcommand{\figurename}{图}
 $if(beamer)$
 $if(background-image)$
 \usebackgroundtemplate{%
@@ -284,8 +285,8 @@ $if(graphics)$
 % using explicit options in \includegraphics[width, height, ...]{}
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
 % Set default figure placement to htbp
-\makeatletter
-\def\fps@figure{ht}
+\usepackage{float}
+\floatplacement{figure}{$if(float-placement-figure)$$float-placement-figure$$else$H$endif$}
 \makeatother
 $endif$
 $if(svg)$
@@ -502,6 +503,7 @@ $include-before$
 $endfor$
 $if(toc)$
 \newpage
+\setcounter{page}{1}
 $if(toc-title)$
 \renewcommand*\contentsname{$toc-title$}
 $endif$
@@ -535,7 +537,6 @@ $if(has-frontmatter)$
 \mainmatter
 $endif$
 \newpage
-\setcounter{page}{1}
 $body$
 
 $if(has-frontmatter)$
